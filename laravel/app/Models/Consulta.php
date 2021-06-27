@@ -43,7 +43,7 @@ class Consulta extends Model
     public static function validarCodigoFormulacion($codigo)
     {
         $conn=Conexion::conectar();
-        $sql="SELECT Autonumerico FROM Formulacion  where Autonumerico='$codigo'";
+        $sql="SELECT Autonumerico FROM Formulacion  where Autonumerico=$codigo";
         $stmt = sqlsrv_query( $conn, $sql );
         $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_NUMERIC);
         return $row;
@@ -53,7 +53,7 @@ class Consulta extends Model
     public static function validarCodigoOculusRx($codigo)
     {
         $conn=Conexion::conectar();
-        $sql="SELECT codigo FROM oculusrx  where codigo='$codigo'";
+        $sql="SELECT codigo FROM oculusrx  where codigo=$codigo";
         $stmt = sqlsrv_query( $conn, $sql );
         $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_NUMERIC);
         return $row;
@@ -84,6 +84,7 @@ class Consulta extends Model
         $tecnica=$data['tecnica'];
         $hallazgos=$data['hallazgos'];
         $conclusion=$data['conclusion'];
+        $fecha=$data['fecha'];
         $sql="UPDATE oculusrx SET tecnicadelestudio='$tecnica', hallazgosdelestudio='$hallazgos', conclusiondelestudio='$conclusion', fechalectura='$fecha',
         identificacionlectura='$identificacion' where codigo='$codigo' ";
         }
